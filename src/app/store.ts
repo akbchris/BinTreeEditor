@@ -1,5 +1,5 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit"
-import fileReducer from "./FileReaderSlice"
+import fileReducer from "./fileSlice"
 export const store = configureStore({
   reducer: {
     file: fileReducer,

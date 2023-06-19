@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from "react"
 import { useAppSelector, useAppDispatch } from "../../app/hooks"
-import { setFileContent } from "../../app/FileReaderSlice"
+import { setFileContent } from "../../app/fileSlice"
 import styles from "./FileReader.module.css"
 import cn from "classnames"
 

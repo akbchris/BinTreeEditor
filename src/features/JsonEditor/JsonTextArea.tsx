@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
-import { setEditedValue } from "../../app/FileReaderSlice"
+import { setEditedValue } from "../../app/fileSlice"
 
 const JsonTextArea = () => {
   const json = useAppSelector((state) => state.file.parsedValue)

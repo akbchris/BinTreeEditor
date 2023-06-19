@@ -1,11 +1,15 @@
 import React, { useState } from "react"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
-function isObject(value) {
+function isObject(value: unknown) {
   const type = typeof value
   return value != null && (type == "object" || type == "function")
 }
 
-const JsonItem = ({ objKey, objValue }) => {
+type JSONItemProps = {
+  objKey: string
+  objValue: any
+}
+const JsonItem = ({ objKey, objValue }: JSONItemProps) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(true)
   const renderValue = () => {
     if (isObject(objValue)) {
@@ -30,7 +34,7 @@ const JsonItem = ({ objKey, objValue }) => {
       <span contentEditable className={"p-2"}>
         {objKey}
       </span>
-      :{isExpanded && renderValue()}
+      {isExpanded && renderValue()}
     </div>
   )
 }
