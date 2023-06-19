@@ -1,0 +1,7 @@
+.container {
+  @apply flex flex-col justify-center items-center pt-5 my-5;
+}
+
+.fileInput {
+  @apply file-input file-input-bordered w-full max-w-xs join-item;
+}
