@@ -18,11 +18,11 @@ You can access [https://bin-tree-editor.vercel.app/](https://bin-tree-editor.ver
 
 ### Screenshot
 
-![screenshot](/docs/screenshot.png)
+![screenshot](https://github.com/akbchris/BinTreeEditor/assets/29156786/f10e516e-aeb4-49f8-9172-7565b61b7854)
 
 Unit Test Coverage
 
-![test.png](/docs/test.png)
+![test.png](https://github.com/akbchris/BinTreeEditor/assets/29156786/fa3562a7-35b3-426c-b546-0a24c4c1b716)
 
 ## Solution 1
 
