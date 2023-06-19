@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { setEditedValue } from "../../app/fileSlice"
-
+import styles from "./JsonTextArea.module.css"
 const JsonTextArea = () => {
   const json = useAppSelector((state) => state.file.parsedValue)
   const dispatch = useAppDispatch()
@@ -28,9 +28,9 @@ const JsonTextArea = () => {
     } catch (e) {}
   }
   return (
-    <div className="grid place-items-center w-full lg:w-1/2 flex-shrink">
+    <div className={styles.container}>
       <textarea
-        className="textarea textarea-primary w-full p-2 textarea-lg"
+        className={styles.editingArea}
         rows={10}
         cols={20}
         value={content}

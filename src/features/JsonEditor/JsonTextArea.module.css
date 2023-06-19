@@ -1,0 +1,6 @@
+.container{
+   @apply grid place-items-center w-full lg:w-1/2 flex-shrink
+}
+.editingArea{
+  @apply  textarea textarea-primary w-full p-2 textarea-lg
+}

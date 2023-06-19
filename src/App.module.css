@@ -1,0 +1,10 @@
+.container{
+   @apply flex flex-col justify-center  w-full items-start p-5 lg:p-20
+}
+.dividerBar{
+    @apply divider divider-horizontal sm:divider-horizontal
+}
+.fileArea{
+    @apply flex w-full flex-col md:flex-row
+}
+

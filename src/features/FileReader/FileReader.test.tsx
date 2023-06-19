@@ -4,7 +4,6 @@ import FileReader from "./FileReader"
 import { Provider } from "react-redux"
 import { store } from "../../app/store"
 import { Simulate } from "react-dom/test-utils"
-import error = Simulate.error
 
 test("should accept file", async () => {
   const user = userEvent.setup()

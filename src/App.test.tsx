@@ -3,7 +3,7 @@ import { Provider } from "react-redux"
 import { store } from "./app/store"
 import App from "./App"
 
-test("renders learn react link", () => {
+test("renders button", () => {
   const view = render(
     <Provider store={store}>
       <App />

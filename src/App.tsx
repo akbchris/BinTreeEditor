@@ -1,16 +1,16 @@
-import "./App.css"
+import "./App.module.css"
 import FileReader from "./features/FileReader/FileReader"
 import JsonTextArea from "./features/JsonEditor/JsonTextArea"
 import React from "react"
 import BinTree from "./features/BinTree/BinTree"
-
+import styles from "./App.module.css"
 function App() {
   return (
-    <div className="flex flex-col justify-center  w-full items-start p-5 lg:p-20">
+    <div className={styles.container}>
       <FileReader></FileReader>
-      <div className="flex w-full flex-col md:flex-row">
+      <div className={styles.fileArea}>
         <JsonTextArea></JsonTextArea>
-        <div className="divider divider-horizontal sm:divider-horizontal"></div>
+        <div className={styles.dividerBar}></div>
         <BinTree></BinTree>
       </div>
     </div>

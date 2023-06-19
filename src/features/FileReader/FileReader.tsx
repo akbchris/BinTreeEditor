@@ -40,6 +40,18 @@ const FileReader = () => {
     setFileSelect(file)
   }
 
+  const handleFetch = () => {
+    const reader = new window.FileReader()
+
+    reader.onload = (e) => {
+      if (e?.target?.result && typeof e?.target.result === "string") {
+        dispatch(setFileContent(e?.target?.result))
+      }
+    }
+
+    fileSelect && reader.readAsText(fileSelect)
+  }
+
   return (
     <div className={styles.container}>
       <div className="flex flex-row my-3 join">
@@ -51,20 +63,7 @@ const FileReader = () => {
           className={styles.fileInput}
           accept={"application/json, text/*"}
         />
-        <button
-          className="btn join-item btn-primary"
-          onClick={() => {
-            const reader = new window.FileReader()
-
-            reader.onload = (e) => {
-              if (e?.target?.result && typeof e?.target.result === "string") {
-                dispatch(setFileContent(e?.target?.result))
-              }
-            }
-
-            fileSelect && reader.readAsText(fileSelect)
-          }}
-        >
+        <button className="btn join-item btn-primary" onClick={handleFetch}>
           Fetch
         </button>
       </div>
