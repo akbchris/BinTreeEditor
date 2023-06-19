@@ -1,27 +1,89 @@
-# vite-template-redux
+# Binary Tree Editor
 
-Uses [Vite](https://vitejs.dev/), [Vitest](https://vitest.dev/), and [React Testing Library](https://github.com/testing-library/react-testing-library) to create a modern [React](https://react.dev/) app compatible with [Create React App](https://create-react-app.dev/)
 
+Author : Chris Fang
+
+### Run Dev
 ```sh
-npx degit reduxjs/redux-templates/packages/vite-template-redux my-app
+npm run dev
 ```
 
-## Goals
+## Project Overview
 
-- Easy migration from Create React App or Vite
-- As beginner friendly as Create React App
-- Optimized performance compared to Create React App
-- Customizable without ejecting
+This single-page application (SPA) is written in React.js Typescript and uses Redux+Redux Toolkit as its state management tool.
 
-## Scripts
+For styling, this project enables CSS modules and uses [Tailwind](https://tailwindcss.com/) and DaisyUI as the design system.
 
-- `dev`/`start` - start dev server and open browser
-- `build` - build for production
-- `preview` - locally preview production build
-- `test` - launch test runner
+You can access [https://bin-tree-editor.vercel.app/](https://bin-tree-editor.vercel.app/) to view it. All files are bundled by Vite.
 
-## Inspiration
+### Screenshot
 
-- [Create React App](https://github.com/facebook/create-react-app/tree/main/packages/cra-template)
-- [Vite](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react)
-- [Vitest](https://github.com/vitest-dev/vitest/tree/main/examples/react-testing-lib)
+![screenshot](/docs/screenshot.png)
+
+Unit Test Coverage
+
+![test.png](/docs/test.png)
+
+## Solution 1
+
+There is an function under  src/utils/parseArrayToTree.ts and you can find unit tests under the same folder
+
+```jsx
+export function parseArrayToTree(arr: TInputArr): BinTreeNode {
+  if (!arr.length) {
+    throw new Error("Parsing Error, Please select correct input")
+  }
+  if (arr.length === 1) {
+    // Early return if it doesn't exist
+    return new BinTreeNode(arr[0])
+  }
+  const [id, leftArr, rightArr] = arr
+
+  let leftNode = null
+  let rightNode = null
+  // recursive parse children nodes if it still contains
+  if (Array.isArray(leftArr)) {
+    leftNode = parseArrayToTree(leftArr as TInputArr)
+  }
+
+  if (Array.isArray(rightArr)) {
+    rightNode = parseArrayToTree(rightArr as TInputArr)
+  }
+  return new BinTreeNode(id, leftNode, rightNode)
+}
+```
+
+The function checks the length of the input array. If it's empty, an error is thrown. If the length is 1, it creates a leaf node with the single value from the array and returns it to prevent create edge nodes.
+
+If the input array has more than one element, it extracts the **`id`**, **`leftArr`**, and **`rightArr`** values from the array. It then recursively calls **`parseArrayToTree`** for the **`leftArr`** and **`rightArr`** if they exist and assigns the returned **`BinTreeNode`** objects to **`leftNode`** and **`rightNode`**, respectively.
+
+## Solution 3
+
+The requirement is to find the smallest subtree that contains all the deepest nodes and set its border to 2px solid green.
+
+If there is only one deepest node, then the smallest subtree will be that node.
+
+If there are multiple deepest nodes, we need to find the **Lowest Common Ancestor** (LCA) by comparing the height of the left and right nodes.
+
+We can leverage the flexibility of JavaScript by adding a flag directly to the target node, for example: {id:1, target:true}. This can be accomplished in O(1) and allows us to set the target node's border. However, modifying the current tree can have side effects.
+
+Assuming that the node's ID is unique in the binary tree, a better approach would be to memorize the node's ID that we are looking for and compare it each time we render the tree. This avoids the need to modify the current tree and its potential side effects.
+
+Steps
+
+- Find the TreeNode (DFS)
+- Get the id of the TreeNode
+- When rendering the Bintree component ,check if its id is the target node.
+
+## Extra Enhancement:
+
+- Typescript strict typing
+- Parsing Error Indicator
+    - can detect the error
+- Error Boundry
+- Easy to reset the content and format in text area
+- Responsive Design
+    - Different layout for mobile view
+- Accessibility
+    - users are allowed to access all the contents in right order
+    - semantic html

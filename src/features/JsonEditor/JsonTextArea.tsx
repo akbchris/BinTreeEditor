@@ -15,14 +15,36 @@ const JsonTextArea = () => {
     setContent(e.target.value)
     dispatch(setEditedValue(e.target.value))
   }
+
+  const resetHandler = () => {
+    const resetString = JSON.stringify(json, undefined, 4)
+    setContent(resetString)
+    dispatch(setEditedValue(resetString))
+  }
+
+  const prettyHandler = () => {
+    try {
+      content && setContent(JSON.stringify(JSON.parse(content), undefined, 4))
+    } catch (e) {}
+  }
   return (
-    <textarea
-      className="textarea textarea-primary w-2/3 p-2 textarea-lg"
-      rows={10}
-      cols={40}
-      value={content}
-      onChange={changeHandler}
-    ></textarea>
+    <div className="grid place-items-center w-full lg:w-1/2 flex-shrink">
+      <textarea
+        className="textarea textarea-primary w-full p-2 textarea-lg"
+        rows={10}
+        cols={20}
+        value={content}
+        onChange={changeHandler}
+      ></textarea>
+      <div>
+        <button className={"btn btn-primary mr-3 my-3"} onClick={resetHandler}>
+          Reset
+        </button>
+        <button className={"btn btn-secondary"} onClick={prettyHandler}>
+          Formatting
+        </button>
+      </div>
+    </div>
   )
 }
 

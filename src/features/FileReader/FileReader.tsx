@@ -1,14 +1,13 @@
 import React, { ReactNode, useState } from "react"
-import { useAppSelector, useAppDispatch } from "../../app/hooks"
+import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { setFileContent } from "../../app/fileSlice"
 import styles from "./FileReader.module.css"
-import cn from "classnames"
 
 type ErrorAlertProps = {
   children: ReactNode
 }
 const ErrorAlert = ({ children }: ErrorAlertProps) => (
-  <div className="alert alert-error">
+  <div className="alert alert-error w-80">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       className="stroke-current shrink-0 h-6 w-6"
@@ -35,7 +34,6 @@ const FileReader = () => {
 
   const handleFileRead = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
-
     if (!file) {
       return
     }
@@ -43,16 +41,18 @@ const FileReader = () => {
   }
 
   return (
-    <div className={cn("prose", styles.container)}>
+    <div className={styles.container}>
       <div className="flex flex-row my-3 join">
+        <label htmlFor="file-uploader">Upload file:</label>
         <input
+          id="file-uploader"
           type="file"
-          accept=".txt,  .json"
           onChange={handleFileRead}
           className={styles.fileInput}
+          accept={"application/json, text/*"}
         />
         <button
-          className="btn join-item"
+          className="btn join-item btn-primary"
           onClick={() => {
             const reader = new window.FileReader()
 
@@ -69,14 +69,12 @@ const FileReader = () => {
         </button>
       </div>
 
-      <div>
-        <h2>File Contents:</h2>
-        <p>{fileContent}</p>
-        {error && <ErrorAlert>Parsing Error</ErrorAlert>}
-        {edittedError && (
-          <ErrorAlert>Invalid JSON string, Please verify your input</ErrorAlert>
-        )}
-      </div>
+      <h2>File Contents:</h2>
+      <p>{fileContent}</p>
+      {error && <ErrorAlert>Parsing Error</ErrorAlert>}
+      {edittedError && (
+        <ErrorAlert>Invalid JSON string, Please verify your input</ErrorAlert>
+      )}
     </div>
   )
 }

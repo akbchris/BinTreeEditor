@@ -1,4 +1,4 @@
-import { TInputArr, parseArrayToTree } from "./parseArrayToTree"
+import { parseArrayToTree, TInputArr } from "./parseArrayToTree"
 
 describe("parse if no leaf", () => {
   it("should parse with no left and right", () => {

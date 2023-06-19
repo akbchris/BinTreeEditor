@@ -1,0 +1,17 @@
+.container{
+   @apply flex w-full md:w-1/2 grow card bg-base-300 overflow-auto
+}
+
+.normalBorder {
+    @apply border-2 border-amber-900 flex flex-col justify-start items-center m-2
+}
+
+.targetNode{
+    @apply border-2 border-green-700
+}
+.emptyNode{
+    @apply border-2 flex flex-col justify-start items-center w-full m-0.5
+}
+.childrenContainer{
+    @apply m-3 flex flex-row w-full justify-around
+}

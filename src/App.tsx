@@ -6,10 +6,13 @@ import BinTree from "./features/BinTree/BinTree"
 
 function App() {
   return (
-    <div className="flex flex-col justify-center  w-full items-start p-20">
+    <div className="flex flex-col justify-center  w-full items-start p-5 lg:p-20">
       <FileReader></FileReader>
-      <JsonTextArea></JsonTextArea>
-      <BinTree></BinTree>
+      <div className="flex w-full flex-col md:flex-row">
+        <JsonTextArea></JsonTextArea>
+        <div className="divider divider-horizontal sm:divider-horizontal"></div>
+        <BinTree></BinTree>
+      </div>
     </div>
   )
 }

@@ -29,6 +29,7 @@ export function parseArrayToTree(arr: TInputArr): BinTreeNode {
 
   let leftNode = null
   let rightNode = null
+  // recursive parse children nodes if it still contains
   if (Array.isArray(leftArr)) {
     leftNode = parseArrayToTree(leftArr as TInputArr)
   }

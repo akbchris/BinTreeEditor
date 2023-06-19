@@ -1,5 +1,5 @@
 .container {
-  @apply flex flex-col justify-center items-center pt-5 my-5;
+  @apply flex flex-col justify-center self-center items-center space-y-1.5 mb-3;
 }
 
 .fileInput {
